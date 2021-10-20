@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import LanguageScreen from "../screens/LanguageScreen";
 import UserTypeScreen from "../screens/UserTypeScreen";
 import RegisterationScreen from "../screens/RegisterationScreen";
+import SetProfileScreen from "../screens/SetProfileScreen";
 
 const Stack = createStackNavigator();
 const header= ({ backgroundColor: '#f4511e'},{headerTintColor: '#fff',headerTitleStyle: { fontWeight: 'bold',}});
@@ -15,6 +16,7 @@ function App() {
           <Stack.Screen name="Home" component={LanguageScreen} options={{headerShown: false}}/> 
           <Stack.Screen name="UserType" component={UserTypeScreen} options={{headerShown: false}}/> 
           <Stack.Screen name="NewUser" component={RegisterationScreen} options={{headerShown: false}}/> 
+          <Stack.Screen name="setProfile" component={SetProfileScreen} options={{headerShown: false}}/> 
 
         </Stack.Navigator>
       </NavigationContainer>

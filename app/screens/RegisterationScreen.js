@@ -12,37 +12,38 @@ import IconComponent from '../component/IconComponent';
 import ButtonComponent from '../component/ButtonComponent'
 
 const RegisterationScreen = (props) => {
-    RegisterationScreen.propTypes = {
+    RegisterationScreen.PropTypes = {
         navigation: PropTypes.object.isRequired,
       };
       const {
         navigation,
       } = props;
-    const [firstTerm, setCheck] = useState(true);
-    const [secondTerm, setCheckSecond] = useState(true);
-    const [thirdTerm, setCheckThird] = useState(true);
-    const [btnEnableDisable, checkBtnCondition] = useState(true);
+    const [firstTerm, setCheck] = useState(false);
+    const [secondTerm, setCheckSecond] = useState(false);
+    const [thirdTerm, setCheckThird] = useState(false);
+    const [btnEnableDisable, checkBtnCondition] = useState(false);
 
     const selectUnselect =()=>{
-         setCheck(firstTerm => !firstTerm)
+         setCheck(current  => !current )
     }
 
     const selectUnselectSecond=()=>{
-        setCheckSecond(secondTerm => !secondTerm)
+        setCheckSecond(current => !current)
     }
     const selectUnselectThird=()=>{
-        setCheckThird(thirdTerm => !thirdTerm)
+        setCheckThird(current => !current)
     }
-    const checkBtnConditionData=()=>{
-        checkBtnCondition( btnEnableDisable=> !btnEnableDisable);
-    }
+  
     useEffect(()=>{
-        if(!firstTerm && !secondTerm && !thirdTerm){
-           checkBtnConditionData()
-                    
+        if(firstTerm && secondTerm && thirdTerm ){
+            checkBtnCondition(true)
+        }else{
+            checkBtnCondition(false)
         }
     })
-
+    const openSetProfileType=()=>{
+        navigation.navigate('setProfile')
+    }
 
   return (
     <View style={styles.mainContainer}>
@@ -59,16 +60,16 @@ const RegisterationScreen = (props) => {
             <View style={{alignItems:"center",justifyContent:"center",flex:1,}}>
                     <View style={{borderColor:"#979797",borderWidth:1,borderRadius:15,padding:20, width:"90%",height:"90%",alignItems:"center", justifyContent:"space-between"}}>
                       
-                        {firstTerm?<IconComponent onClick={()=>selectUnselect()} width={30} height={30} path={require('../../assets/images/icon/unSelect/UNSELECT.png')}/>:
-                            <IconComponent onClick={()=>selectUnselect()} width={30} height={30} path={require('../../assets/images/icon/select/SELECT.png')}/>
+                        {firstTerm?<IconComponent onClick={()=>selectUnselect()} width={30} height={30} path={require('../../assets/images/icon/select/SELECT.png')}/>:
+                            <IconComponent onClick={()=>selectUnselect()} width={30} height={30} path={require('../../assets/images/icon/unSelect/UNSELECT.png')}/>
                         }
                         <SubHeaderTextMsg  fontSize={18} fontWeight="normal" text= {`${"I agree to Janssen’s privacy Policy"}`}/>
-                        {secondTerm?<IconComponent onClick={()=>selectUnselectSecond()} width={30} height={30} path={require('../../assets/images/icon/unSelect/UNSELECT.png')}/>:
-                        <IconComponent onClick={()=>selectUnselectSecond()} width={30} height={30} path={require('../../assets/images/icon/select/SELECT.png')}/>
+                        {secondTerm?<IconComponent onClick={()=>selectUnselectSecond()} width={30} height={30} path={require('../../assets/images/icon/select/SELECT.png')}/>:
+                        <IconComponent onClick={()=>selectUnselectSecond()} width={30} height={30} path={require('../../assets/images/icon/unSelect/UNSELECT.png')}/>
                         }
                         <SubHeaderTextMsg fontSize={18} fontWeight="normal" text= {`${"I agree to help improve the service by \n sharing the data on how i use the \n service for aggregated analytics."}`}/>
-                        {thirdTerm?<IconComponent onClick={()=>selectUnselectThird()} width={30} height={30} path={require('../../assets/images/icon/unSelect/UNSELECT.png')}/>:
-                         <IconComponent onClick={()=>selectUnselectThird()} width={30} height={30} path={require('../../assets/images/icon/select/SELECT.png')}/>    
+                        {thirdTerm?<IconComponent onClick={()=>selectUnselectThird()} width={30} height={30} path={require('../../assets/images/icon/select/SELECT.png')}/>:
+                         <IconComponent onClick={()=>selectUnselectThird()} width={30} height={30} path={require('../../assets/images/icon/unSelect/UNSELECT.png')}/>    
                         }
                         <SubHeaderTextMsg width={30} height={30} fontSize={18} fontWeight="normal" text= {`${"I agree to Avegen’s T&C and Privacy \n Policy"}`}/>
 
@@ -77,7 +78,9 @@ const RegisterationScreen = (props) => {
         </View>    
 
         <View style={{flex:3,justifyContent:"flex-start",alignItems:"center"}}>
-          <ButtonComponent text="Save" type="disable" />
+          {btnEnableDisable ? <ButtonComponent text="Save" type="enable" /> :
+          <ButtonComponent onStartShouldSetResponder ={openSetProfileType} text="Save" type="disable" />
+          }
         </View>   
 
     </View>
