@@ -8,7 +8,7 @@ const HeaderComponent = (props) => {
     return (
         <View style={styles.mainContainer}>
             <View style={styles.iconStyle} >
-                <IconComponent width={15} height={15} path={props.backArrowImgPath} onClick={props.onClick}></IconComponent>
+                <IconComponent width={20} height={20} path={props.backArrowImgPath} onClick={props.onClick}></IconComponent>
             </View>
             <View style={styles.headerView} >
                 <Text style={styles.headerText}>{props.text}</Text>

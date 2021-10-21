@@ -3,7 +3,7 @@ import {Text} from "react-native";
 
 const TextComponent =(props)=>{
     return(
-        <Text>{props.value}</Text>
+        <Text style={{textAlign:"center", color:props.color}}>{props.value}</Text>
     )
 }
 export default TextComponent;

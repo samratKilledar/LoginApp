@@ -1,7 +1,7 @@
 
 
 import React, { useState , useEffect} from 'react';
-import { View } from "react-native";
+import { View,Dimensions } from "react-native";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import HeaderComponent from '../component/HeaderComponent';
@@ -10,6 +10,7 @@ import HeaderText from '../component/HeaderText';
 import SubHeaderTextMsg from '../component/SubHeaderTextMsg';
 import IconComponent from '../component/IconComponent';
 import ButtonComponent from '../component/ButtonComponent'
+const windowHeight = Dimensions.get("window").height;
 
 const RegisterationScreen = (props) => {
     RegisterationScreen.PropTypes = {
@@ -42,12 +43,12 @@ const RegisterationScreen = (props) => {
         }
     })
     const openSetProfileType=()=>{
-        navigation.navigate('setProfile')
+        navigation.navigate('setProfile');
     }
 
   return (
     <View style={styles.mainContainer}>
-        <View style={{flex:1}}>
+        <View style={{height:windowHeight/15}}>
             <HeaderComponent text="Registration" onClick={()=> navigation.goBack()} backArrowImgPath={require('../../assets/images/icon/backArrow/Arrow.png')}/>
         </View>
 
@@ -78,8 +79,8 @@ const RegisterationScreen = (props) => {
         </View>    
 
         <View style={{flex:3,justifyContent:"flex-start",alignItems:"center"}}>
-          {btnEnableDisable ? <ButtonComponent text="Save" type="enable" /> :
-          <ButtonComponent onStartShouldSetResponder ={openSetProfileType} text="Save" type="disable" />
+          {btnEnableDisable ? <ButtonComponent  onStartShouldSetResponder ={openSetProfileType} text="Save" type="enable" /> :
+          <ButtonComponent text="Save" type="disable" />
           }
         </View>   
 

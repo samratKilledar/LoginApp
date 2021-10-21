@@ -9,17 +9,17 @@ const TextInputComponent = (props) => {
 //alert(props.value)
 useEffect(() => {
     // Update the document title using the browser API
-    // alert(text)
+    //alert(text)
   });
   return (
     <SafeAreaView>
       <TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
+        style={[styles.input,{color:props.textColor}]}
+        onChangeText={props.onChangeText}
+       // value={text}
         placeholder={props.placeholder}
-        placeholderTextColor="red" 
-       // keyboardType="numeric"
+        placeholderTextColor={props.placeholderColor}
+        keyboardType={props.keyboardType}
       />
      
     </SafeAreaView>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 12,
     borderWidth: 1,
-    color: 'green',
+    textAlign:"center"
   },
 });
 export default TextInputComponent;
